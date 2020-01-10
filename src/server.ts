@@ -6,7 +6,8 @@ import {Sequelize} from 'sequelize-typescript'
 
 import HomeController from './controllers/home/home.controller'
 
-import { User } from './models/user'
+import { User } from './models/User'
+import { Order } from './models/Order'
 
 const app = new App({
     port: 5000,
@@ -26,7 +27,7 @@ const sequelize =  new Sequelize({
     username: 'postgres',
     password: 'admin',
     storage: ':memory:',
-    models: [ User ], 
+    models: [ User, Order ], 
 })
 
 app.listen()

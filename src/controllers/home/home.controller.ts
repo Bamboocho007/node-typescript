@@ -1,7 +1,8 @@
 import * as express from 'express'
 import { Request, Response } from 'express'
 import IControllerBase from '../../interfaces/IControllerBase.interface'
-import { User } from "../../models/user"
+import { User } from "../../models/User"
+import { Order } from "../../models/Order"
 
 class HomeController implements IControllerBase {
     public path = '/'
@@ -17,9 +18,25 @@ class HomeController implements IControllerBase {
 
     index = async (req: Request, res: Response) => {
 
-        const Users = await User.findAll()
+        // const Users = await User.findAll({
+        //     include: [
+        //         {
+        //             model: Order,
+        //             required: false
+        //         }
+        //     ]
+        // })
 
-        res.json({ Users })
+        const Orders = await Order.findAll({
+            include: [
+                {
+                    model: User,
+                    required: false
+                }
+            ]
+        })
+
+        res.json({ Orders })
     }
 }
 
