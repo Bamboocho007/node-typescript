@@ -1,4 +1,4 @@
-import {Table, Column, ForeignKey, Model, DataType} from 'sequelize-typescript'
+import {Table, Column, ForeignKey, Model, BelongsTo} from 'sequelize-typescript'
 import { User } from './User'
  
 @Table({
@@ -10,6 +10,9 @@ class Order extends Model<Order> {
   @ForeignKey(() => User)
   @Column
   user_id: number;
+
+  @BelongsTo(() => User) 
+  user: User;
 
 }
 

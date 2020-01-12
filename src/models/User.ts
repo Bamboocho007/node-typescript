@@ -1,4 +1,5 @@
-import {Table, Column, Model, DataType} from 'sequelize-typescript'
+import {Table, Column, Model, DataType, HasMany} from 'sequelize-typescript'
+import { Order } from './Order';
  
 @Table({
     timestamps: false,
@@ -14,6 +15,9 @@ class User extends Model<User> {
 
   @Column
   creationdate: Date;
+
+  @HasMany(() => Order)
+  players: Order[];
 
 }
 

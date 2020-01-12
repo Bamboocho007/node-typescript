@@ -17,21 +17,12 @@ class HomeController implements IControllerBase {
     }
 
     index = async (req: Request, res: Response) => {
-
-        // const Users = await User.findAll({
-        //     include: [
-        //         {
-        //             model: Order,
-        //             required: false
-        //         }
-        //     ]
-        // })
-
         const Orders = await Order.findAll({
             include: [
                 {
                     model: User,
-                    required: false
+                    required: false,
+                    where: {age: 20}
                 }
             ]
         })
